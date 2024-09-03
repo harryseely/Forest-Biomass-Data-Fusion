@@ -1,0 +1,15 @@
+#Hyperparameters for base OCNN model
+
+#Architecture Config
+ocnn_lenet: True
+spec_cnn: False
+terrain_cnn: False
+include_thermal: False
+
+#Genral HPs
+batch_size: 16
+lr: 0.001086302646748229
+dropout_final: 0.3
+
+#Octree-CNN
+ocnn_dropout: 0.1

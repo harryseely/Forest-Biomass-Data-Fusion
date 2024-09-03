@@ -1,0 +1,41 @@
+#Hyperparameters for OCNN + Spectral + Terrain model
+
+#Architecture Config
+ocnn_lenet: True
+spec_cnn: True
+terrain_cnn: True
+include_thermal: False
+
+#Genral HPs
+batch_size: 16
+lr: 0.0001166865604337889
+dropout_final: 0.1
+
+#Spectral CNN
+cnn1d_activation_fn: "relu"
+cnn1d_conv_kernel_size: 2
+cnn1d_dilation_rate: 3
+cnn1d_dropout: 0.1
+cnn1d_global_pool: true
+cnn1d_n_layers: 3
+cnn1d_n_neurons_1: 32
+cnn1d_n_neurons_2: 16
+cnn1d_neuron_mult: 1
+cnn1d_pool_kernel_size: 2
+cnn1d_pooling_type: "avg"
+cnn1d_stride: 1
+cnn1d_stride_1: 2
+
+#Terrain CNN
+terrain_cnn_activation_fn: "relu"
+terrain_cnn_conv_kernel_size: 2
+terrain_cnn_dilation_rate: 2
+terrain_cnn_dropout: 0.2
+terrain_cnn_n_layers: 2
+terrain_cnn_n_neurons_1: 256
+terrain_cnn_n_neurons_2: 32
+terrain_cnn_neuron_mult: 1
+terrain_cnn_pool_kernel_size: 2
+terrain_cnn_pooling_type: "max"
+terrain_cnn_stride: 1
+terrain_cnn_stride_1: 1

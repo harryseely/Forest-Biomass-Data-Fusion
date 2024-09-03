@@ -1,0 +1,86 @@
+#Config file including hyperparameters, filepaths and other run parameters
+
+#Run logistics:
+dataset: 'new_brunswick'
+num_epochs: 200 #Set to 2 for debugging (disables logging and checkpointing)
+data_fold: 1
+data_partition: 1.0 #1.0 to use all train data
+n_workers: 0
+lr_finder: False
+gradient_clip: True
+precision: '16-mixed' #32-true, 16-mixed, bf16-mixed
+ddp: False #whether to use distributed data parallel with available gpu's or train on one gpu
+z_score: True #Whether to z-score normalize the input features
+
+#Model architecture
+ocnn_lenet: True #Boolean; whether to include an Octree-CNN branch to process lidar data
+spec_cnn: True #Boolean; whether to include a 1-D CNN branch to process spectral data
+terrain_cnn: True #Boolean; whether to include a 2-D CNN branch to process terrain data
+include_thermal: False #Boolean; whether to include surface reflectance band in the spectral data
+
+#General hyperparameters:
+lr: 0.001
+batch_size: 16 # IMPORTANT: when using DDP batch size is per GPU, so total batch size is batch_size * n_gpus
+dropout_final: 0.3 # Dropout value used in final regressor module
+loss_function_type: "smooth_l1" # Can either be "smooth_l1", "mse"
+weight_decay: 0.01
+cawr_t_0: 'num_epochs' #cawr_t_0: number of epochs before restart; set to 'num_epochs' to automatically use the number of epochs
+cawr_t_mult: 2 # cawr_t_mult: multiplier for cawr_t_0 after each restart
+
+#Early Stopping
+early_stopping: True
+patience: 30 #Early stopping patience
+min_delta: 0.001 #Minimum change in validation loss to be considered an improvement
+
+#Random forest pre-training variable screening
+bands: "all" #Determines which bands to use. Either "all", comma sepearated string (e.g., "b1,b2,b3"), or 'use_rf_screening'
+rf_top_n_feats: 3 #If bands is not equal to "all", then uses the top n features identified in RF min must be equal to the CNN kernel size, max is the number of input bands
+
+#Fusion and Regression Modules
+fusion_module: 'cat' #Concatenation ('cat') is the only currently supported option
+n_neurons_final: 64 #Number of neurons in final regressor and fusion modules
+fusion_lyr_norm: True #Whethe to apply layer norm in the fusion module (if using the cat fusion module)
+
+#Octree CNN Hyperparameters
+ocnn_dropout: 0.1
+ocnn_stages: 'auto' #If 'auto' ocnn_stages = octree_depth - 2
+octree_depth: 6
+ocnn_use_feats: False #In ocnn models, use return number, classification, scan angle rank, number of returns as feats
+use_normals: False
+use_ground_points: True
+full_depth: 2
+augment: True
+
+#1-D CNN Hyperparameters
+cnn1d_dropout: 0.4
+cnn1d_n_neurons_1: 128
+cnn1d_n_neurons_2: 256
+cnn1d_neuron_mult: 1
+cnn1d_n_layers: 4
+cnn1d_global_pool: True #Boolean; whether to use Adaptive Average global pooling in the 1-D CNN or Resnet1D
+cnn1d_pooling_type: 'avg'
+cnn1d_conv_kernel_size: 2
+cnn1d_pool_kernel_size: 2
+cnn1d_stride: 1
+cnn1d_stride_1: 1
+cnn1d_dilation_rate: 3
+cnn1d_activation_fn: 'leaky_relu'
+
+#DEM (2D) CNN Hyperparameters
+terrain_cnn_dropout: 0.5
+terrain_cnn_n_neurons_1: 128
+terrain_cnn_n_neurons_2: 32
+terrain_cnn_neuron_mult: 1
+terrain_cnn_n_layers: 1
+terrain_cnn_pooling_type: 'avg'
+terrain_cnn_conv_kernel_size: 2
+terrain_cnn_pool_kernel_size: 2
+terrain_cnn_stride: 1
+terrain_cnn_stride_1: 2
+terrain_cnn_dilation_rate: 1
+terrain_cnn_activation_fn: 'leaky_relu'
+
+#Misc:
+data_dir: C:/Users/user/data
+wandb_key: C:/Users/user/keys/wandb_key.txt
+verbose: True
