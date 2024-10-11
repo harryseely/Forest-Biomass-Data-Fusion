@@ -1,9 +1,5 @@
-# Deep Learning Data Fusion For Tree Component Biomass Regression
+# Forest Biomass Estimation Using Deep Learning Data Fusion of LiDAR, Multispectral, and Topographic Data
 
-## Overview
-This repository contains code used ...
-
-## Visual Abstract
 <img src="images/fusion_model_architecture.png" alt= "fusion_model_architecture">
 
 ## Citation
