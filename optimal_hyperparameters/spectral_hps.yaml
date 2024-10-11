@@ -1,0 +1,27 @@
+#Hyperparameters for OCNN + Spectral model
+
+#Architecture Config
+ocnn_lenet: False
+spec_cnn: True
+terrain_cnn: False
+include_thermal: False
+
+#Genral HPs
+batch_size: 16
+lr: 0.0001209247797760164
+dropout_final: 0.4
+
+#Spectral CNN
+cnn1d_activation_fn: "leaky_relu"
+cnn1d_conv_kernel_size: 2
+cnn1d_dilation_rate: 1
+cnn1d_dropout: 0.1
+cnn1d_global_pool: True
+cnn1d_n_layers: 4
+cnn1d_n_neurons_1: 256
+cnn1d_n_neurons_2: 512
+cnn1d_neuron_mult: 2
+cnn1d_pool_kernel_size: 2
+cnn1d_pooling_type: "avg"
+cnn1d_stride: 1
+cnn1d_stride_1: 2
