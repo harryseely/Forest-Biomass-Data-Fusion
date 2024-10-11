@@ -1,4 +1,3 @@
-
 #My folders to ignore --------------------------------------------------------------------------------------------------
 /Data/
 /Figures/
@@ -6,6 +5,7 @@
 **/lightning_logs/
 **/__pycache__/
 /.idea/
+**/wandb/
 
 #Specific files to ignore
 **/*.xml
