@@ -2,7 +2,7 @@
 
 #Run logistics:
 dataset: 'new_brunswick'
-num_epochs: 200 #Set to 2 for debugging (disables logging and checkpointing)
+num_epochs: 1 #Set to 2 for debugging (disables logging and checkpointing)
 data_fold: 1
 data_partition: 1.0 #1.0 to use all train data
 n_workers: 0
@@ -11,6 +11,7 @@ gradient_clip: True
 precision: '16-mixed' #32-true, 16-mixed, bf16-mixed
 ddp: False #whether to use distributed data parallel with available gpu's or train on one gpu
 z_score: True #Whether to z-score normalize the input features
+bands: "b_ublue_z,b_blue_z,b_green_z,b_red_z,b_nir_z,b_swir1_z,b_swir2_z" #String representing list of Landsat-8 band names to use in 1-D CNN
 
 #Model architecture
 ocnn_lenet: True #Boolean; whether to include an Octree-CNN branch to process lidar data
@@ -32,12 +33,7 @@ early_stopping: True
 patience: 30 #Early stopping patience
 min_delta: 0.001 #Minimum change in validation loss to be considered an improvement
 
-#Random forest pre-training variable screening
-bands: "all" #Determines which bands to use. Either "all", comma sepearated string (e.g., "b1,b2,b3"), or 'use_rf_screening'
-rf_top_n_feats: 3 #If bands is not equal to "all", then uses the top n features identified in RF min must be equal to the CNN kernel size, max is the number of input bands
-
 #Fusion and Regression Modules
-fusion_module: 'cat' #Concatenation ('cat') is the only currently supported option
 n_neurons_final: 64 #Number of neurons in final regressor and fusion modules
 fusion_lyr_norm: True #Whethe to apply layer norm in the fusion module (if using the cat fusion module)
 
@@ -81,6 +77,6 @@ terrain_cnn_dilation_rate: 1
 terrain_cnn_activation_fn: 'leaky_relu'
 
 #Misc:
-data_dir: C:/Users/user/data
-wandb_key: C:/Users/user/keys/wandb_key.txt
+data_dir: D:/Sync/RQ2/Analysis/data
+wandb_key: D:/Sync/Keys/wandb_api_key.txt
 verbose: True

@@ -101,7 +101,7 @@ class BiomassDataset(Dataset):
         # Select spectral data to be used in model ----------------------------------------------------------------------
 
         # Select spectral band columns to be used in model
-        self.spectral_cols = cfg['bands'].split(",")
+        self.spectral_cols = cfg['bands'].split(',')
 
         # Whether to include thermal
         if cfg['include_thermal'] is False:
@@ -111,8 +111,6 @@ class BiomassDataset(Dataset):
         if logger is not None:
             selected_bands = ",".join(self.spectral_cols)
             wandb.config.update({"bands": selected_bands}, allow_val_change=True)
-
-        print(f"Selected bands\n:{self.spectral_cols}")
 
         # Get standard deviation (sd) for all bands for training set samples -------------------------------------------
         self.spec_sd = self.df.loc[:, self.spectral_cols].std().to_dict()

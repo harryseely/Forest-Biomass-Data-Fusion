@@ -11,12 +11,10 @@ from utils.trainer import LitModel
 from utils.dataset import BiomassDataModule
 from utils.training_utils import get_callbacks, name_run
 from utils.test_model import test_model
-from random_forest.rf_band_screening import band_selection
 
 
 def train_fn(tune_config, wandb_project="misc", static_cfg=None, test=True):
     """
-
     :param tune_config: ray tune config object
     :param wandb_project: wandb project name
     :param static_cfg: dictionary containing hyperparameters that are not being tuned (i.e., static config)
@@ -38,9 +36,6 @@ def train_fn(tune_config, wandb_project="misc", static_cfg=None, test=True):
     #Update cfg with tune_config parameters
     static_cfg.update(tune_config)
     cfg = static_cfg
-
-    # Random forest band pre-screening
-    cfg = band_selection(cfg)
 
     # Create a Lightning model
     model = LitModel(cfg)
@@ -71,6 +66,10 @@ def train_fn(tune_config, wandb_project="misc", static_cfg=None, test=True):
 
     # Create a Lighting Trainer
     trainer = pl.Trainer(
+        #todo: check if this is correct
+        devices=[0],
+        strategy="auto",
+        accelerator="gpu",
         max_epochs=cfg['num_epochs'],
         logger=wandb_logger,
         enable_progress_bar=False,
