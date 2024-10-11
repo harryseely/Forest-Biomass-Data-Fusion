@@ -2,7 +2,7 @@
 
 #Run logistics:
 dataset: 'new_brunswick'
-num_epochs: 1 #Set to 2 for debugging (disables logging and checkpointing)
+num_epochs: 200 #Set to 2 for debugging (disables logging and checkpointing)
 data_fold: 1
 data_partition: 1.0 #1.0 to use all train data
 n_workers: 0
@@ -77,6 +77,7 @@ terrain_cnn_dilation_rate: 1
 terrain_cnn_activation_fn: 'leaky_relu'
 
 #Misc:
-data_dir: D:/Sync/RQ2/Analysis/data
-wandb_key: D:/Sync/Keys/wandb_api_key.txt
+#Misc:
+data_dir: C:/Users/user/data
+wandb_key: C:/Users/user/keys/wandb_key.txt
 verbose: True
