@@ -66,10 +66,6 @@ def train_fn(tune_config, wandb_project="misc", static_cfg=None, test=True):
 
     # Create a Lighting Trainer
     trainer = pl.Trainer(
-        #todo: check if this is correct
-        devices=[0],
-        strategy="auto",
-        accelerator="gpu",
         max_epochs=cfg['num_epochs'],
         logger=wandb_logger,
         enable_progress_bar=False,
