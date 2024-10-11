@@ -6,13 +6,13 @@
 ...
 
 
-# Key Features:
+## Key Features:
 - **Data Augmentation**: Includes spectral and terrain data augmentation techniques.
 - **Multi-Branch CNN Architecture**: Supports 1-D CNN for spectral data, 2-D CNN for topographic data, and Octree-CNN for lidar data.
 - **Configurable Hyperparameters**:  Adjust model and training parameters via `config.yaml`.
 - **Training and Evaluation**: Includes setup for training, validation, testing, and inference.
 
-# Setup Instructions:
+## Setup Instructions:
 1. **Clone the Repository**:
    ```sh
    git clone https://github.com/harryseely/Forest-Biomass-Data-Fusion.git
