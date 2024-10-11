@@ -415,12 +415,12 @@ if __name__ == "__main__":
     # General params
     batch_size = 512
     ras_res = 22.56
-    clean_las_dir = r"E:/NB_Gov_Lidar_Tiles_Clean"
-    bbox_shp_out_fpath = None  # r"D:/Sync/RQ2/Analysis/data/inference_data/inference_bboxes.shp"
-    lidar_index_fpath = r"D:/Sync/RQ2/Analysis/data/inference_data/inference_cleaned_lidar_index.shp"
-    base_ras_dir = r'E:/rq2_pred_biomass_rasters'
+    clean_las_dir = r""
+    bbox_shp_out_fpath = None
+    lidar_index_fpath = r""
+    base_ras_dir = r''
     crs = "EPSG:2953"
-    all_clean_las_fpaths = pd.read_csv("D:/Sync/RQ2/Analysis/data/inference_data/inf_tile_names.csv")[
+    all_clean_las_fpaths = pd.read_csv("")[
         'filename'].tolist()
 
 
@@ -439,7 +439,7 @@ if __name__ == "__main__":
     topo_ras_buf_d = 2
 
     # Read config
-    with open("D:/Sync/RQ2/Analysis/config.yaml", "r") as yamlfile:
+    with open("", "r") as yamlfile:
         cfg = yaml.load(yamlfile, Loader=yaml.FullLoader)
 
     data_module = InferenceDataModule(cfg=cfg,
@@ -448,8 +448,8 @@ if __name__ == "__main__":
                      device_id=1,
                      topo_ras_buf_d=2,
                      topo_ras_dims=(14, 14),
-                     topo_ras_fpath=r"D:/Sync/RQ2/Analysis/data/inference_data/inference_topo_ras.tif",
-                     landsat_fpath = r"D:/Sync/RQ2/Analysis/data/new_brunswick/landsat_imagery/landsat_8_2018.tif"
+                     topo_ras_fpath=r"",
+                     landsat_fpath = r""
                                       )
 
 

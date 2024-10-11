@@ -42,7 +42,7 @@ def train_fn(tune_config, wandb_project="misc", static_cfg=None, test=True):
 
     # Add run name and save dir to cfg
     cfg['run_name'] = name_run(cfg)
-    cfg['save_dir'] = rf"D:\Sync\RQ2\Analysis\checkpoints_and_config\{cfg['run_name']}"
+    cfg['save_dir'] = rf"{cfg['run_name']}"
 
     # set logger
     with open(cfg['wandb_key']) as f:
